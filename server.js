@@ -89,7 +89,7 @@ app.post('/api/exercise/add', (req,res) =>  {
 app.get('/api/exercise/log', (req,res) => {
   
   const { userId, from, to, limit } = req.query;
-  const log = getExercisesFromUserWithId(userId);
+  let log = getExercisesFromUserWithId(userId);
   
   //Assuming that the date entered is valid
   if(from){
