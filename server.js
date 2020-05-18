@@ -68,10 +68,11 @@ app.post('/api/exercise/add', (req,res) =>  {
   const { userId, description, duration, date } = req.body;
   const dateObj = date === '' ? new Date() : new Date(date);
   const newExercise = {
-    _id: userId,
+    username:getUsernameById(userId),
     description,
     duration: +duration,
-    date: dateObj.toString()
+    _id: userId,
+    date: dateObj.toString().slice(0, 15)
   }
   exercises.push(newExercise);
   
@@ -144,4 +145,3 @@ app.use((err, req, res, next) => {
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
-
